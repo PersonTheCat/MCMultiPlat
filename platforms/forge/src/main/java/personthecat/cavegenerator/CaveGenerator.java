@@ -1,6 +1,6 @@
 package personthecat.cavegenerator;
 
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -16,7 +16,7 @@ public class CaveGenerator {
     private final IEventBus eventBus = MinecraftForge.EVENT_BUS;
 
     public CaveGenerator() {
-        World world = null; // Shouldn't work.
+        Level level = null; // Compile check
         // jar files
         // cfg registry
         this.setupEventHandlers();

@@ -2,25 +2,31 @@ import personthecat.buildtools.OverwriteValidator
 
 buildscript {
     repositories {
-        gradlePluginPortal()
         mavenCentral()
     }
     dependencies {
         classpath group: 'local.personthecat', name: 'cavegenerator-plugins'
         classpath group: 'gradle.plugin.com.github.jengelman.gradle.plugins', name: 'shadow', version: '7.0.0'
-        classpath group: 'org.eclipse.equinox', name: 'common', version: '3.2.0-v20060603'
-        classpath group: 'org.eclipse.core', name: 'org.eclipse.core.resources', version: '3.7.100'
     }
 }
 
-allprojects {
-    version = mod_version
+plugins {
+    id 'architectury-plugin' version "$architectury_version"
+    id 'forgified-fabric-loom' version "$forgified_fabric_version" apply false
+}
 
+architectury {
+    minecraft = mc_version
+}
+
+allprojects {
     apply plugin: 'com.github.johnrengelman.shadow'
     apply plugin: 'java'
     apply plugin: 'eclipse'
     apply plugin: 'maven-publish'
     apply plugin: OverwriteValidator
+
+    version = mod_version
 
     repositories {
         // So we can conveniently read dependencies from GH.
@@ -67,5 +73,9 @@ allprojects {
         useJUnitPlatform()
         ignoreFailures = false
         failFast = true
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
     }
 }

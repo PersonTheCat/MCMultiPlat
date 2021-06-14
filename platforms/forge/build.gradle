@@ -1,69 +1,32 @@
-import net.minecraftforge.gradle.userdev.tasks.RenameJarInPlace
-
-buildscript {
-    repositories {
-        maven { url = 'https://files.minecraftforge.net/maven' }
-        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.+', changing: true
-    }
-}
-
-apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'forgified-fabric-loom'
+apply plugin: 'architectury-plugin'
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-repositories {
-    maven {
-        url = "https://maven.tterrag.com/"
-    }
+architectury {
+    platformSetupLoomIde()
+    forge()
+}
+
+loom {
+    silentMojangMappingsLicense()
 }
 
 dependencies {
-    minecraft group: 'net.minecraftforge', name: 'forge', version: "$mc_version-$forge_version"
-
     bundle(project("$common")) {
         transitive = false
     }
     implementation(project("$common")) {
         transitive = false
     }
-}
-
-minecraft {
-    mappings channel: 'snapshot', version: '20201028-1.16.3'
-//    mappings channel: 'snapshot', version: '20210611-yarn-1.16.5'
-    runs {
-        client {
-            workingDirectory = project.file('run')
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-            property 'forge.logging.console.level', 'debug'
-
-            mods {
-                cavegenerator {
-                    sources += sourceSets.main
-                }
-            }
-        }
-
-        server {
-            workingDirectory = project.file('runServer')
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-            property 'forge.logging.console.level', 'debug'
-
-            mods {
-                cavegenerator {
-                    sources += sourceSets.main
-                }
-            }
-        }
+    developmentForge(project("$common")) {
+        transitive = false
     }
-}
 
-tasks.withType(RenameJarInPlace) {
-    dependsOn shadowJar
+    minecraft "com.mojang:minecraft:$mc_version"
+    mappings minecraft.officialMojangMappings()
+    forge "net.minecraftforge:forge:$mc_version-$forge_version"
 }
 
 jar {
@@ -78,4 +41,10 @@ jar {
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
+}
+
+remapJar {
+    input.set shadowJar.archiveFile
+    dependsOn shadowJar
+    classifier 'remapped'
 }

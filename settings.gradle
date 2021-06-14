@@ -4,6 +4,14 @@ pluginManagement {
             name = 'Fabric'
             url = 'https://maven.fabricmc.net/'
         }
+        maven {
+            name = 'Forge'
+            url = 'https://files.minecraftforge.net/maven/'
+        }
+        maven {
+            name = 'Architectury'
+            url = 'https://maven.shedaniel.me/'
+        }
         gradlePluginPortal()
     }
 }
@@ -14,7 +22,7 @@ include 'common', 'platforms:forge', 'platforms:fabric'
 
 includeBuild('buildTools') {
     dependencySubstitution {
-        substitute module('local.personthecat:cavegenerator-plugins') with project(":")
+        substitute module('local.personthecat:cavegenerator-plugins') with project(':')
     }
 }
 
