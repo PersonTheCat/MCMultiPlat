@@ -12,7 +12,7 @@ buildscript {
 
 plugins {
     id 'architectury-plugin' version "$architectury_version"
-    id 'forgified-fabric-loom' version "$forgified_fabric_version" apply false
+    id 'dev.architectury.loom' version "$architectury_loom_version" apply false
 }
 
 architectury {

@@ -10,7 +10,8 @@ pluginManagement {
         }
         maven {
             name = 'Architectury'
-            url = 'https://maven.shedaniel.me/'
+            url = 'https://maven.architectury.dev/'
+//            url = 'https://maven.shedaniel.me/'
         }
         gradlePluginPortal()
     }

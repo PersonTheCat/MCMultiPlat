@@ -17,6 +17,7 @@ public class CaveGenerator {
 
     public CaveGenerator() {
         Level level = null; // Compile check
+        final String result = ConfigTest.DEMO.get();
         // jar files
         // cfg registry
         this.setupEventHandlers();
