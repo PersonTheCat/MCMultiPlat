@@ -40,8 +40,8 @@ allprojects {
     }
 
     dependencies {
-        bundle group: 'com.github.personthecat', name: 'hjson-java', version: '4ff07499a4'
-        bundle group: 'com.github.personthecat', name: 'fresult', version: '441c74d6b8'
+        bundle group: 'com.github.personthecat', name: 'hjson-java', version: '3.0.0-C2'
+        bundle group: 'com.github.PersonTheCat', name: 'FResult', version: '2.0-BETA-1'
         implementation 'org.jetbrains:annotations:16.0.2'
 
         compileOnly group: 'local.personthecat', name: 'cavegenerator-plugins'
