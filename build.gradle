@@ -57,15 +57,6 @@ allprojects {
     }
 
     jar {
-        from {
-            configurations.bundle.collect {
-                if (configurationContainsFile(configurations.bundle, it)) {
-                    it.isDirectory() ? it : zipTree(it)
-                } else {
-                    null
-                }
-            }
-        }
         archivesBaseName = "$archive_base-$platform"
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     }
