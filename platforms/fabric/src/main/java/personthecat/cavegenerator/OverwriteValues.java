@@ -1,6 +1,6 @@
 package personthecat.cavegenerator;
 
-import personthecat.buildtools.OverwriteClass;
+import personthecat.overwritevalidator.annotations.OverwriteClass;
 import java.util.function.Supplier;
 
 // Commenting these values out should demonstrate expected failure

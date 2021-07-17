@@ -1,6 +1,6 @@
 package personthecat.cavegenerator;
 
-import personthecat.buildtools.OverwriteClass;
+import personthecat.overwritevalidator.annotations.OverwriteClass;
 
 // Uncommenting this line should result in failure
 // @OverwriteClass
